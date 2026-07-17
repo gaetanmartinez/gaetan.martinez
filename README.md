@@ -52,7 +52,7 @@ Ce qui me différencie : je comprends les enjeux métier avant de toucher à la 
 
 | P5 | **Base de données immobilière** | Conception et requêtes SQL pour une agence immo | SQL | RGPD · Modélisation · Requêtes avancées |
 
-| P6 | **Bottleneck — Gestion des données boutique** | EDA sur données de stock et ventes (vins & spiritueux) | Python · pandas · Plotly | Nettoyage · Fusion · Analyses uni/multivariées |
+| P6 | **Bottleneck — Gestion des données boutique** | EDA sur données de stock et ventes (vins & spiritueux) | Python · pandas · Plotly | Nettoyage · Fusion · Analyses uni/multivariées |  [🔗 Voir](https://gaetanmartinez.github.io/gaetan.martinez/p13/)
 
 | P7 | **Dashboard Power BI — Gestion de projet** | Suivi d'avancement de projets pour une entreprise | Power BI | Reporting · DAX · Visualisation interactive |
 
