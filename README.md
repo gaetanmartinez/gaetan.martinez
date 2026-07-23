@@ -41,30 +41,16 @@ Ce qui me différencie : je comprends les enjeux métier avant de toucher à la 
 
 ## 📂 Projets formation (OpenClassrooms — Data Analyst RNCP 6)
 
-| # | Projet | Sujet | Stack | Compétences clés |
-|---|---|---|---|---|
+| Projet | Sujet | Stack | Compétences clés |
+|---|---|---|---|
 
-| P2 | **Analyse de ventes e-commerce** | Synthèse graphique des ventes | Excel | Datavisualisation · Narration de données |
+| [**Bottleneck — Gestion des données boutique**](https://gaetanmartinez.github.io/gaetan.martinez/p13/) | EDA sur données de stock et ventes (vins & spiritueux) | Python · pandas · Plotly | Nettoyage · Fusion · Analyses uni/multivariées |
 
-| P3 | **Requêtes SQL — Assurance** | Analyse du marché des assurances habitation | SQL | Modélisation BDD · Requêtes métier |
+| [**Eau potable dans le monde**](https://gaetanmartinez.github.io/gaetan.martinez/p10/) | Dashboards pour une ONG sur l'accès à l'eau | Power BI | Storytelling · Accessibilité · Dashboard interactif |
 
-| P4 | **Étude de santé publique — FAO** | Analyse des données sur la faim dans le monde | Python · pandas | Exploration · Analyse exploratoire |
+| [**Étude de marché — Clustering**](https://gaetanmartinez.github.io/gaetan.martinez/p11/) | Segmentation et ACP pour recommandations stratégiques | Python · scikit-learn | Clustering · ACP · Machine Learning non supervisé |
 
-| P5 | **Base de données immobilière** | Conception et requêtes SQL pour une agence immo | SQL | RGPD · Modélisation · Requêtes avancées |
-
-| P6 | **Bottleneck — Gestion des données boutique** | EDA sur données de stock et ventes (vins & spiritueux) | Python · pandas · Plotly | Nettoyage · Fusion · Analyses uni/multivariées |  [🔗 Voir](https://gaetanmartinez.github.io/gaetan.martinez/p13/)
-
-| P7 | **Dashboard Power BI — Gestion de projet** | Suivi d'avancement de projets pour une entreprise | Power BI | Reporting · DAX · Visualisation interactive |
-
-| P8 | **Profils sociodémographiques — dbt** | Analyse de profils avec workflow dbt | dbt · SQL | Data Engineering · Nettoyage · Agrégation |
-
-| P9 | **Tendances du streaming musical** | EDA + tests statistiques + prévision avec Prophet | Python · Prophet · scipy | Séries temporelles · Tests statistiques |
-
-| P10 | **Eau potable dans le monde** | Dashboards pour une ONG sur l'accès à l'eau | Power BI | Storytelling · Accessibilité · Dashboard interactif |
-
-| P11 | **Étude de marché — Clustering** | Segmentation et ACP pour recommandations stratégiques | Python · scikit-learn | Clustering · ACP · Machine Learning non supervisé |
-
-| P12 | **Détection de faux billets** | Modèle de prédiction par ML supervisé et non supervisé | Python · scikit-learn | Régression logistique · KMeans · ML supervisé |
+| [**Détection de faux billets**](https://gaetanmartinez.github.io/gaetan.martinez/p12/) | Modèle de prédiction par ML supervisé et non supervisé | Python · scikit-learn | Régression logistique · KMeans · ML supervisé |
 
 ---
 
