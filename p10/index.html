@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P10 — Eau potable dans le monde | Gaëtan Martinez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F1117; --surface: #1A1D27; --border: #2A2D3A;
+      --accent: #4F8EF7; --accent-soft: rgba(79,142,247,0.12);
+      --green: #3ECF8E; --green-soft: rgba(62,207,142,0.12);
+      --orange: #F59E0B; --orange-soft: rgba(245,158,11,0.1);
+      --blue: #38BDF8; --blue-soft: rgba(56,189,248,0.1);
+      --text: #E8EAF0; --text-muted: #8B8FA8; --text-dim: #5A5D72;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 5rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
+    .breadcrumb { font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .project-label { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--blue); background: var(--blue-soft); border: 1px solid rgba(56,189,248,0.3); padding: 3px 10px; border-radius: 4px; letter-spacing: 0.08em; margin-bottom: 1.2rem; }
+    h1 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h1 span { color: var(--blue); }
+    .hero-desc { font-size: 16px; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.7; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+    .tag { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 4rem; }
+    .stat { background: var(--surface); padding: 1.2rem 1.5rem; }
+    .stat-value { font-family: var(--mono); font-size: 1.4rem; font-weight: 600; color: var(--blue); display: block; margin-bottom: 0.2rem; }
+    .stat-label { font-size: 12px; color: var(--text-dim); }
+    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .section { margin-bottom: 3.5rem; }
+    h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    h2::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+    p { color: var(--text-muted); line-height: 1.75; margin-bottom: 0.8rem; }
+    .insights { display: grid; gap: 0.8rem; margin-top: 1rem; }
+    .insight { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 0.8rem 1.2rem; font-size: 14px; color: var(--text-muted); }
+    .insight strong { color: var(--text); }
+    .limit { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; padding: 0.8rem 1.2rem; font-size: 14px; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .limit strong { color: var(--orange); }
+    .tools { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+    .tool { font-family: var(--mono); font-size: 12px; color: var(--blue); background: var(--blue-soft); border: 1px solid rgba(56,189,248,0.2); padding: 4px 12px; border-radius: 4px; }
+    .views-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1rem; margin-top: 1rem; }
+    .view-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; border-top: 3px solid var(--blue); }
+    .view-num { font-family: var(--mono); font-size: 11px; color: var(--blue); margin-bottom: 0.4rem; }
+    .view-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .view-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+    .screenshot { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+    .screenshot-bar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.4rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #FF5F57; } .dot.yellow { background: #FEBC2E; } .dot.green { background: #28C840; }
+    .screenshot-body { padding: 0; min-height: 260px; display: flex; align-items: center; justify-content: center; }
+    .screenshot-body img { width: 100%; height: auto; display: block; }
+    .screenshot-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-dim); font-family: var(--mono); font-size: 12px; padding: 3rem; text-align: center; }
+    .screenshot-placeholder span { font-size: 1.5rem; }
+    .screenshot-caption { font-size: 12px; color: var(--text-dim); font-family: var(--mono); padding: 0.6rem 1rem; border-top: 1px solid var(--border); }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; margin-top: 2rem; transition: all 0.2s; font-family: var(--mono); }
+    .back-btn:hover { color: var(--text); border-color: var(--blue); }
+    @media (max-width: 600px) { nav { padding: 0 1rem; } .hero, .content { padding-left: 1rem; padding-right: 1rem; } .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://gaetanmartinez.github.io/gaetan.martinez/">gaetanmartinez.github.io</a>
+  <div class="nav-links">
+    <a href="https://gaetanmartinez.github.io/gaetan.martinez/">Accueil</a>
+    <a href="https://www.linkedin.com/in/gaetanmartinez" target="_blank">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="https://gaetanmartinez.github.io/gaetan.martinez/">~/portfolio</a> / p10
+  </div>
+  <div class="project-label">P10 · POWER BI · DATA VIZ · 2025</div>
+  <h1>Accès à l'<span>eau potable</span><br>dans le monde</h1>
+  <p class="hero-desc">
+    Mission pour l'ONG DWFA (Drinking Water For All) : concevoir un tableau de bord Power BI pour identifier les pays prioritaires où concentrer les efforts d'accès à l'eau potable, selon 3 domaines d'expertise de l'organisation.
+  </p>
+  <div class="tags">
+    <span class="tag">Power BI</span>
+    <span class="tag">DAX</span>
+    <span class="tag">Data Viz</span>
+    <span class="tag">OMS</span>
+    <span class="tag">FAO</span>
+    <span class="tag">Accessibilité</span>
+    <span class="tag">Storytelling</span>
+  </div>
+  <div class="stats-grid">
+    <div class="stat">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Vues du dashboard</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Domaines d'expertise</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">OMS</span>
+      <span class="stat-label">Source principale</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">100+</span>
+      <span class="stat-label">Pays couverts</span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- CONTEXTE -->
+  <div class="section">
+    <h2>Contexte & besoin métier</h2>
+    <p>L'ONG DWFA (Drinking Water For All) a soumis une demande de financement auprès d'un bailleur de fonds. Si accordé, ce financement permettra d'investir dans un de ses 3 domaines d'expertise dans un pays encore indéterminé.</p>
+    <p>Le chef de mission Thibaut Renard a besoin d'un tableau de bord interactif pour identifier les pays qui rencontrent des difficultés d'accès à l'eau potable et orienter la décision d'investissement. Le dashboard doit être accessible, clair, et couvrir les 3 domaines d'expertise de l'ONG.</p>
+  </div>
+
+  <!-- 3 DOMAINES -->
+  <div class="section">
+    <h2>3 domaines d'expertise DWFA</h2>
+    <div class="views-grid">
+      <div class="view-card">
+        <div class="view-num">DOMAINE 01</div>
+        <div class="view-name">Création de services</div>
+        <div class="view-desc">Pays sans accès à l'eau potable — taux d'accès, population concernée, zones rurales vs urbaines</div>
+      </div>
+      <div class="view-card">
+        <div class="view-num">DOMAINE 02</div>
+        <div class="view-name">Modernisation</div>
+        <div class="view-desc">Pays avec services existants mais dégradés — qualité de l'eau, mortalité liée à l'eau non potable</div>
+      </div>
+      <div class="view-card">
+        <div class="view-num">DOMAINE 03</div>
+        <div class="view-name">Consulting gouvernemental</div>
+        <div class="view-desc">Pays avec capacité institutionnelle — stabilité politique, PIB, capacité à mettre en œuvre des politiques publiques</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="section">
+    <h2>Structure du dashboard — 3 vues</h2>
+
+    <div class="screenshot">
+      <div class="screenshot-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:0.5rem;">Vue 1 — Vue mondiale (page d'accueil)</span>
+      </div>
+      <div class="screenshot-body">
+        <!-- <img src="../assets/images/p10-vue1.png" alt="Vue mondiale"> -->
+        <div class="screenshot-placeholder">
+          <span>🌍</span>
+          Insérer ici : capture Vue 1 — carte mondiale accès eau potable<br>
+          <code style="font-size:10px;">assets/images/p10-vue1.png</code>
+        </div>
+      </div>
+      <div class="screenshot-caption">Vue mondiale — taux d'accès à l'eau potable par pays, carte choroplèthe interactive</div>
+    </div>
+
+    <div class="screenshot">
+      <div class="screenshot-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:0.5rem;">Vue 2 — Analyse par domaine d'expertise</span>
+      </div>
+      <div class="screenshot-body">
+        <!-- <img src="../assets/images/p10-vue2.png" alt="Vue domaine"> -->
+        <div class="screenshot-placeholder">
+          <span>📊</span>
+          Insérer ici : capture Vue 2 — indicateurs par domaine d'expertise<br>
+          <code style="font-size:10px;">assets/images/p10-vue2.png</code>
+        </div>
+      </div>
+      <div class="screenshot-caption">Vue par domaine — indicateurs filtrables par région, niveau de revenu, population</div>
+    </div>
+
+    <div class="screenshot">
+      <div class="screenshot-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:0.5rem;">Vue 3 — Focus pays prioritaires</span>
+      </div>
+      <div class="screenshot-body">
+        <!-- <img src="../assets/images/p10-vue3.png" alt="Focus pays"> -->
+        <div class="screenshot-placeholder">
+          <span>🎯</span>
+          Insérer ici : capture Vue 3 — focus pays prioritaires par domaine<br>
+          <code style="font-size:10px;">assets/images/p10-vue3.png</code>
+        </div>
+      </div>
+      <div class="screenshot-caption">Focus pays — recommandations par domaine d'expertise avec indicateurs détaillés</div>
+    </div>
+  </div>
+
+  <!-- DÉMARCHE -->
+  <div class="section">
+    <h2>Démarche</h2>
+    <div class="insights">
+      <div class="insight"><strong>Sélection des indicateurs</strong> — Identification des KPIs pertinents pour chaque domaine (taux d'accès eau potable, mortalité hydrique, stabilité politique, PIB) à partir des données OMS et FAO.</div>
+      <div class="insight"><strong>Mockup basse fidélité</strong> — Conception d'un blueprint des 3 vues avant développement Power BI, validé avec le chef de mission.</div>
+      <div class="insight"><strong>Construction Power BI</strong> — Modèle de données, relations entre tables, mesures DAX, visuels interactifs (carte choroplèthe, graphiques à barres, KPI cards).</div>
+      <div class="insight"><strong>Accessibilité</strong> — Palette de couleurs accessible aux daltoniens, contrastes élevés, navigation au clavier, textes alternatifs sur les visuels.</div>
+      <div class="insight"><strong>Storytelling</strong> — Narration guidée du global vers le particulier : vue mondiale → analyse par domaine → recommandation pays.</div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section">
+    <h2>Stack & outils</h2>
+    <div class="tools">
+      <span class="tool">Power BI Desktop</span>
+      <span class="tool">DAX</span>
+      <span class="tool">Power Query</span>
+      <span class="tool">OMS data</span>
+      <span class="tool">FAO data</span>
+    </div>
+  </div>
+
+  <!-- LIMITES -->
+  <div class="section">
+    <h2>Limites & prochaines pistes</h2>
+    <div class="limit"><strong>Données statiques</strong> — Le dashboard repose sur des données à une date fixe. Une connexion à des sources live permettrait un suivi en temps réel.</div>
+    <div class="limit"><strong>Accessibilité Power BI</strong> — Certaines fonctionnalités avancées d'accessibilité sont limitées dans Power BI vs solutions web natives.</div>
+    <p style="margin-top:1rem;"><strong style="color:var(--text)">Prochaines pistes :</strong> publier le dashboard sur Power BI Service pour un accès partagé · ajouter une vue temporelle (évolution sur 10 ans) · intégrer un score composite de priorisation.</p>
+  </div>
+
+  <a class="back-btn" href="https://gaetanmartinez.github.io/gaetan.martinez/">← Retour au portfolio</a>
+
+</div>
+</body>
+</html>
