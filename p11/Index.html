@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P11 — Étude de marché internationale | Gaëtan Martinez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F1117; --surface: #1A1D27; --border: #2A2D3A;
+      --accent: #4F8EF7; --accent-soft: rgba(79,142,247,0.12);
+      --green: #3ECF8E; --green-soft: rgba(62,207,142,0.12);
+      --orange: #F59E0B; --orange-soft: rgba(245,158,11,0.1);
+      --text: #E8EAF0; --text-muted: #8B8FA8; --text-dim: #5A5D72;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 5rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
+    .breadcrumb { font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .project-label { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(79,142,247,0.3); padding: 3px 10px; border-radius: 4px; letter-spacing: 0.08em; margin-bottom: 1.2rem; }
+    h1 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h1 span { color: var(--accent); }
+    .hero-desc { font-size: 16px; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.7; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+    .tag { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 4rem; }
+    .stat { background: var(--surface); padding: 1.2rem 1.5rem; }
+    .stat-value { font-family: var(--mono); font-size: 1.4rem; font-weight: 600; color: var(--green); display: block; margin-bottom: 0.2rem; }
+    .stat-label { font-size: 12px; color: var(--text-dim); }
+    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .section { margin-bottom: 3.5rem; }
+    h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    h2::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+    p { color: var(--text-muted); line-height: 1.75; margin-bottom: 0.8rem; }
+    .insights { display: grid; gap: 0.8rem; margin-top: 1rem; }
+    .insight { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 0.8rem 1.2rem; font-size: 14px; color: var(--text-muted); }
+    .insight strong { color: var(--text); }
+    .limit { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; padding: 0.8rem 1.2rem; font-size: 14px; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .limit strong { color: var(--orange); }
+    .tools { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+    .tool { font-family: var(--mono); font-size: 12px; color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(79,142,247,0.2); padding: 4px 12px; border-radius: 4px; }
+    .clusters-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1rem; margin-top: 1rem; }
+    .cluster-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; }
+    .cluster-card.c0 { border-left: 3px solid #4F8EF7; }
+    .cluster-card.c1 { border-left: 3px solid #3ECF8E; }
+    .cluster-card.c2 { border-left: 3px solid #F59E0B; }
+    .cluster-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .cluster-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+    .screenshot { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+    .screenshot-bar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.4rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #FF5F57; } .dot.yellow { background: #FEBC2E; } .dot.green { background: #28C840; }
+    .screenshot-body { padding: 0; min-height: 220px; display: flex; align-items: center; justify-content: center; }
+    .screenshot-body img { width: 100%; height: auto; display: block; }
+    .screenshot-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-dim); font-family: var(--mono); font-size: 12px; padding: 3rem; text-align: center; }
+    .screenshot-placeholder span { font-size: 1.5rem; }
+    .screenshot-caption { font-size: 12px; color: var(--text-dim); font-family: var(--mono); padding: 0.6rem 1rem; border-top: 1px solid var(--border); }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; margin-top: 2rem; transition: all 0.2s; font-family: var(--mono); }
+    .back-btn:hover { color: var(--text); border-color: var(--accent); }
+    @media (max-width: 600px) { nav { padding: 0 1rem; } .hero, .content { padding-left: 1rem; padding-right: 1rem; } .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://gaetanmartinez.github.io/gaetan.martinez/">gaetanmartinez.github.io</a>
+  <div class="nav-links">
+    <a href="https://gaetanmartinez.github.io/gaetan.martinez/">Accueil</a>
+    <a href="https://www.linkedin.com/in/gaetanmartinez" target="_blank">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="https://gaetanmartinez.github.io/gaetan.martinez/">~/portfolio</a> / p11
+  </div>
+  <div class="project-label">P11 · CLUSTERING · ACP · 2025</div>
+  <h1>Étude de marché <span>internationale</span><br>— Expansion export poulet</h1>
+  <p class="hero-desc">
+    Mission pour "La poule qui chante" : identifier les groupes de pays cibles pour exporter de la viande de volaille à l'international. Analyse PESTEL, collecte multi-sources, ACP et clustering (CAH + K-means) sur plus de 100 pays.
+  </p>
+  <div class="tags">
+    <span class="tag">Python</span>
+    <span class="tag">scikit-learn</span>
+    <span class="tag">ACP</span>
+    <span class="tag">K-means</span>
+    <span class="tag">CAH</span>
+    <span class="tag">pandas</span>
+    <span class="tag">FAO</span>
+    <span class="tag">Banque Mondiale</span>
+  </div>
+  <div class="stats-grid">
+    <div class="stat">
+      <span class="stat-value">100+</span>
+      <span class="stat-label">Pays analysés</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">10</span>
+      <span class="stat-label">Variables PESTEL</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">4</span>
+      <span class="stat-label">Sources de données</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Clusters K-means</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">Dim1+2+3</span>
+      <span class="stat-label">Dimensions ACP retenues</span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- CONTEXTE -->
+  <div class="section">
+    <h2>Contexte & besoin métier</h2>
+    <p>La société "La poule qui chante" souhaite s'étendre à l'international et exporter sa viande de volaille. Le PDG demande une analyse des groupements de pays pour identifier les marchés cibles prioritaires.</p>
+    <p>L'objectif est de segmenter les pays selon leur attractivité commerciale : solvabilité, dépendance aux importations alimentaires, stabilité politique, infrastructure logistique et potentiel de demande en protéines animales.</p>
+  </div>
+
+  <!-- DONNÉES -->
+  <div class="section">
+    <h2>Données & approche PESTEL</h2>
+    <p>4 sources de données open data croisées pour construire 10 variables d'analyse :</p>
+    <div class="insights">
+      <div class="insight"><strong>FAO — DisponibiliteAlimentaire_2017.csv</strong> — Disponibilité intérieure en viande de volaille (milliers de tonnes)</div>
+      <div class="insight"><strong>FAO — Population_2000_2018.csv</strong> — Population totale 2017</div>
+      <div class="insight"><strong>FAO — FAOSTAT</strong> — Disponibilité en protéines animales (g/personne/jour)</div>
+      <div class="insight"><strong>Banque Mondiale — Databanks.csv</strong> — PIB/habitant, urbanisation, importations alimentaires, stabilité politique, contrôle de la corruption, accès à l'électricité, terres agricoles</div>
+    </div>
+    <p style="margin-top:1rem;">Les noms de pays ont été harmonisés entre les 4 sources avant fusion (gestion des espaces insécables, casse, variantes orthographiques). Valeurs manquantes imputées par la moyenne pour préserver l'effectif.</p>
+  </div>
+
+  <!-- DÉMARCHE -->
+  <div class="section">
+    <h2>Démarche analytique</h2>
+    <div class="insights">
+      <div class="insight"><strong>EDA</strong> — Analyse des outliers (IQR) sur importations alimentaires (seuil 33%) et PIB/habitant (seuil 39 272$). Corrélations de Spearman entre variables.</div>
+      <div class="insight"><strong>ACP</strong> — Standardisation (StandardScaler), réduction dimensionnelle. 3 axes retenus selon la règle de Kaiser (valeur propre > 1). Cercles des corrélations et projection des individus.</div>
+      <div class="insight"><strong>CAH</strong> — Classification Ascendante Hiérarchique (méthode de Ward, distance euclidienne). Dendrogramme + score de silhouette → 2 clusters optimaux.</div>
+      <div class="insight"><strong>K-means</strong> — Méthode du coude + score de silhouette → 3 clusters retenus (k=3). Projection sur le plan factoriel ACP colorée par cluster.</div>
+    </div>
+
+    <div class="screenshot" style="margin-top:1.5rem;">
+      <div class="screenshot-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:0.5rem;">Cercle des corrélations ACP — Dim1 / Dim2</span>
+      </div>
+      <div class="screenshot-body">
+        <!-- <img src="../assets/images/p11-cercle.png" alt="Cercle des corrélations"> -->
+        <div class="screenshot-placeholder">
+          <span>🔵</span>
+          Insérer ici : cercle des corrélations ACP<br>
+          <code style="font-size:10px;">assets/images/p11-cercle.png</code>
+        </div>
+      </div>
+      <div class="screenshot-caption">Cercle des corrélations — Dim1 (développement économique) vs Dim2 (dépendance alimentaire)</div>
+    </div>
+
+    <div class="screenshot">
+      <div class="screenshot-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-left:0.5rem;">Projection K-means — Plan factoriel ACP</span>
+      </div>
+      <div class="screenshot-body">
+        <!-- <img src="../assets/images/p11-kmeans.png" alt="Clustering K-means"> -->
+        <div class="screenshot-placeholder">
+          <span>🗺️</span>
+          Insérer ici : projection ACP colorée par clusters K-means<br>
+          <code style="font-size:10px;">assets/images/p11-kmeans.png</code>
+        </div>
+      </div>
+      <div class="screenshot-caption">Projection des pays sur le plan factoriel ACP — 3 clusters K-means</div>
+    </div>
+  </div>
+
+  <!-- CLUSTERS -->
+  <div class="section">
+    <h2>Segmentation — 3 clusters identifiés</h2>
+    <div class="clusters-grid">
+      <div class="cluster-card c0">
+        <div class="cluster-name">Cluster 0 — Marchés développés</div>
+        <div class="cluster-desc">PIB élevé · Forte urbanisation · Faible dépendance aux importations alimentaires · Consommation de protéines animales élevée</div>
+      </div>
+      <div class="cluster-card c1">
+        <div class="cluster-name">Cluster 1 — Marchés émergents prioritaires</div>
+        <div class="cluster-desc">Population importante · Urbanisation en croissance · Dépendance aux importations alimentaires · Fort potentiel de demande en volaille</div>
+      </div>
+      <div class="cluster-card c2">
+        <div class="cluster-name">Cluster 2 — Marchés à surveiller</div>
+        <div class="cluster-desc">Instabilité politique · Faible PIB · Accès à l'électricité limité · Chaîne du froid difficile à maintenir</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div class="section">
+    <h2>Résultats & recommandations</h2>
+    <div class="insights">
+      <div class="insight"><strong>Axe 1 de l'ACP :</strong> oppose les pays développés (PIB élevé, forte consommation protéines, bonne infrastructure) aux pays en développement.</div>
+      <div class="insight"><strong>Axe 2 de l'ACP :</strong> capte la dépendance aux importations alimentaires — les pays fortement importateurs sont plus ouverts à l'entrée de produits étrangers.</div>
+      <div class="insight"><strong>Cibles prioritaires :</strong> pays du Cluster 1 — population importante, urbanisation croissante, dépendance aux importations alimentaires et potentiel de consommation en hausse.</div>
+      <div class="insight"><strong>Marchés à éviter :</strong> Cluster 2 — risque pays élevé, infrastructure logistique insuffisante pour maintenir une chaîne du froid fiable.</div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section">
+    <h2>Stack & outils</h2>
+    <div class="tools">
+      <span class="tool">Python 3.x</span>
+      <span class="tool">pandas</span>
+      <span class="tool">numpy</span>
+      <span class="tool">scikit-learn</span>
+      <span class="tool">scipy</span>
+      <span class="tool">matplotlib</span>
+      <span class="tool">seaborn</span>
+      <span class="tool">FAO data</span>
+      <span class="tool">Banque Mondiale</span>
+    </div>
+  </div>
+
+  <!-- LIMITES -->
+  <div class="section">
+    <h2>Limites & prochaines pistes</h2>
+    <div class="limit"><strong>Données 2017</strong> — L'analyse est basée sur les données disponibles en 2017. Le contexte géopolitique et économique a évolué depuis.</div>
+    <div class="limit"><strong>Imputation par moyenne</strong> — Les valeurs manquantes imputées peuvent lisser les différences entre pays et légèrement biaiser le clustering.</div>
+    <div class="limit"><strong>Harmonisation des noms de pays</strong> — Les jointures entre sources ont nécessité un nettoyage manuel des noms. Certains pays peuvent avoir été perdus lors de la fusion.</div>
+    <p style="margin-top:1rem;"><strong style="color:var(--text)">Prochaines pistes :</strong> approfondir l'analyse pays par pays dans le Cluster 1 · intégrer des données de concurrence locale · construire un score d'attractivité composite.</p>
+  </div>
+
+  <a class="back-btn" href="https://gaetanmartinez.github.io/gaetan.martinez/">← Retour au portfolio</a>
+
+</div>
+</body>
+</html>
